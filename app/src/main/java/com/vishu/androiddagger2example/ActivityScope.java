@@ -3,7 +3,7 @@ package com.vishu.androiddagger2example;
 import javax.inject.Scope;
 
 /**
- * Created by Miroslaw Stanek on 22.04.15.
+ * Created by Vishal on 20.01.16.
  */
 @Scope
 public @interface ActivityScope {
