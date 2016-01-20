@@ -1,7 +1,7 @@
 package com.vishu.androiddagger2example.ui.activity.component;
 
 import com.vishu.androiddagger2example.ActivityScope;
-import com.vishu.androiddagger2example.ui.SplashActivity;
+import com.vishu.androiddagger2example.ui.activity.SplashActivity;
 import com.vishu.androiddagger2example.ui.activity.module.SplashActivityModule;
 
 import dagger.Subcomponent;

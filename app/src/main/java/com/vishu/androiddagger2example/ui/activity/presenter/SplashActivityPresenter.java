@@ -1,11 +1,9 @@
 package com.vishu.androiddagger2example.ui.activity.presenter;
 
-import android.util.Log;
-
 import com.vishu.androiddagger2example.data.api.GingerApiService;
 import com.vishu.androiddagger2example.data.model.Category;
 import com.vishu.androiddagger2example.data.model.Location;
-import com.vishu.androiddagger2example.ui.SplashActivity;
+import com.vishu.androiddagger2example.ui.activity.SplashActivity;
 import com.vishu.androiddagger2example.utils.L;
 
 import java.io.IOException;

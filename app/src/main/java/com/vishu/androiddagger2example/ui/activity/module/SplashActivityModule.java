@@ -2,7 +2,7 @@ package com.vishu.androiddagger2example.ui.activity.module;
 
 import com.vishu.androiddagger2example.ActivityScope;
 import com.vishu.androiddagger2example.data.api.GingerApiService;
-import com.vishu.androiddagger2example.ui.SplashActivity;
+import com.vishu.androiddagger2example.ui.activity.SplashActivity;
 import com.vishu.androiddagger2example.ui.activity.presenter.SplashActivityPresenter;
 
 import dagger.Module;

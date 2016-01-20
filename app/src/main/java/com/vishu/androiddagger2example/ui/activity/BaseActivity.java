@@ -1,10 +1,10 @@
-package com.vishu.androiddagger2example.ui;
+package com.vishu.androiddagger2example.ui.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 /**
- * Created by Miroslaw Stanek on 23.04.15.
+ * Created by Vishal on 20.01.16.
  */
 public abstract class BaseActivity extends AppCompatActivity {
 
