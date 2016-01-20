@@ -9,9 +9,17 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.vishu.androiddagger2example.GingerApplication;
 import com.vishu.androiddagger2example.R;
+import com.vishu.androiddagger2example.ui.activity.module.SplashActivityModule;
+import com.vishu.androiddagger2example.ui.activity.presenter.SplashActivityPresenter;
 
-public class SplashActivity extends AppCompatActivity {
+import javax.inject.Inject;
+
+public class SplashActivity extends BaseActivity {
+
+    @Inject
+    SplashActivityPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +36,15 @@ public class SplashActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+        presenter.loadRepositories();
+    }
+
+    @Override
+    protected void setupActivityComponent() {
+        GingerApplication.get(this)
+                .getAppComponent()
+                .plus(new SplashActivityModule(this))
+                .inject(this);
     }
 
    /* @Override
