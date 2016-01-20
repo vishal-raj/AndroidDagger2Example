@@ -29,7 +29,6 @@ public class SplashActivityPresenter {
     }
 
     public void loadRepositories() {
-        //splashActivity.showLoading(true);
         Observable<Category> call = gingerApiService.getCategoryList(new Location("28.4792943", "77.0430799"));
         call.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.newThread())
@@ -61,7 +60,7 @@ public class SplashActivityPresenter {
 
                     @Override
                     public void onNext(Category category) {
-                        L.m(category.getCategories().size()+"");
+                        L.m(category.getCategories().size() + "");
                     }
                 });
     }

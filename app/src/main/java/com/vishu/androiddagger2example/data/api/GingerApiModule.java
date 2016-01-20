@@ -18,6 +18,7 @@ import dagger.Module;
 import dagger.Provides;
 import retrofit.GsonConverterFactory;
 import retrofit.Retrofit;
+import retrofit.RxJavaCallAdapterFactory;
 
 /**
  * Created by Vishal on 20-01-2016.
@@ -45,11 +46,12 @@ public class GingerApiModule {
 
     @Provides
     @Singleton
-    public Retrofit provideRestAdapter(Application application, OkHttpClient okHttpClient) {
+    public Retrofit provideRestAdapter(OkHttpClient okHttpClient) {
         Retrofit client = new Retrofit.Builder()
                 .baseUrl("http://52.26.6.81/api/index.php/")
                 .addConverter(String.class, new ToStringConverter())
                 .client(okHttpClient)
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
