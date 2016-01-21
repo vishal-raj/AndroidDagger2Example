@@ -3,31 +3,53 @@ package com.vishu.androiddagger2example.ui.activity;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 
 import com.vishu.androiddagger2example.GingerApplication;
 import com.vishu.androiddagger2example.R;
+import com.vishu.androiddagger2example.data.model.Category;
 import com.vishu.androiddagger2example.ui.activity.module.SplashActivityModule;
 import com.vishu.androiddagger2example.ui.activity.presenter.SplashActivityPresenter;
+import com.vishu.androiddagger2example.ui.adapter.CategoryAdapter;
+import com.vishu.androiddagger2example.utils.L;
 
 import javax.inject.Inject;
 
-public class SplashActivity extends BaseActivity {
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
+public class SplashActivity extends BaseActivity implements CategoryAdapter.mClickListener{
 
     @Inject
     SplashActivityPresenter presenter;
+    @Bind(R.id.list_category)
+    RecyclerView categoryList;
+    private LinearLayoutManager linearLayoutManager;
+    private CategoryAdapter categoryAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        ButterKnife.bind(this);
+
+        linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        categoryList.setLayoutManager(linearLayoutManager);
+        categoryList.setItemAnimator(new DefaultItemAnimator());
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show());
-        presenter.loadRepositories();
+        presenter.loadCategories();
+        /*presenter.loadCategory();*/
     }
 
     @Override
@@ -36,6 +58,18 @@ public class SplashActivity extends BaseActivity {
                 .getAppComponent()
                 .plus(new SplashActivityModule(this))
                 .inject(this);
+    }
+
+    public void setCategories(Category category){
+        categoryAdapter = new CategoryAdapter(category.getCategories());
+        categoryAdapter.setListner(this);
+        categoryList.setAdapter(categoryAdapter);
+        categoryList.setHasFixedSize(true);
+    }
+
+    @Override
+    public void mClick(View v, int position) {
+        L.m("Clicked on Item");
     }
 
    /* @Override
